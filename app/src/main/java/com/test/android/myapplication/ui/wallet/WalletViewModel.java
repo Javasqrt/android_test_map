@@ -6,14 +6,15 @@ import androidx.lifecycle.ViewModel;
 
 public class WalletViewModel extends ViewModel {
 
-    private MutableLiveData<String> mText;
 
+    private MutableLiveData<String> string;
     public WalletViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is wallet fragment");
+        string = new MutableLiveData<>();
+
+        string.setValue("asjdkf");
     }
 
     public LiveData<String> getText() {
-        return mText;
+        return string;
     }
 }
