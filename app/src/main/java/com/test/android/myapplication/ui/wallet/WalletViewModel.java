@@ -21,7 +21,7 @@ public class WalletViewModel extends AndroidViewModel {
         super(application);
         getRecyclerViewAdapter = new MutableLiveData<>();
         this.recyclerViewAdapter = recyclerViewAdapter;
-        //recyclerViewAdapter = new RecyclerViewAdapter(1,"new Deal", "1000", Calendar.getInstance().getTime().toString(), R.color.red);
+        recyclerViewAdapter = new RecyclerViewAdapter(1,"new Deal", "1000", Calendar.getInstance().getTime().toString(), R.color.red);
         getRecyclerViewAdapter.setValue(recyclerViewAdapter);
     }
 

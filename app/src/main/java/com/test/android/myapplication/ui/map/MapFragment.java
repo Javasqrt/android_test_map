@@ -31,21 +31,6 @@ public class MapFragment extends Fragment {
     GoogleMap map;
     FusedLocationProviderClient providerClient;
     SupportMapFragment mapFragment;
-
-
-
-
-        /**
-         * Manipulates the map once available.
-         * This callback is triggered when the map is ready to be used.
-         * This is where we can add markers or lines, add listeners or move the camera.
-         * In this case, we just add a marker near Sydney, Australia.
-         * If Google Play services is not installed on the device, the user will be prompted to
-         * install it inside the SupportMapFragment. This method will only be triggered once the
-         * user has installed Google Play services and returned to the app.
-         */
-
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -66,7 +51,7 @@ public class MapFragment extends Fragment {
 
 
 
-    private void getCurrentLocation() {
+    public void getCurrentLocation() {
         if (ActivityCompat.checkSelfPermission(getLayoutInflater().getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             Task<Location> task = providerClient.getLastLocation();
             task.addOnSuccessListener(new OnSuccessListener<Location>() {
@@ -86,13 +71,13 @@ public class MapFragment extends Fragment {
                 }
             });
         } else {
-            ActivityCompat.requestPermissions((Activity) getLayoutInflater().getContext(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION},44);
+            ActivityCompat.requestPermissions(requireActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION},44);
         }
 
 
     }
 
-    @Override
+   /* @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 44) {
@@ -100,6 +85,5 @@ public class MapFragment extends Fragment {
                 getCurrentLocation();
             }
         }
-
-    }
+    }*/
 }
