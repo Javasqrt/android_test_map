@@ -1,12 +1,10 @@
 package com.test.android.myapplication.ui.wallet;
 
 import android.app.Application;
-import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
-import android.os.Handler;
 import android.util.Log;
 
 import androidx.lifecycle.AndroidViewModel;
@@ -14,8 +12,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.test.android.myapplication.R;
-import com.test.android.myapplication.RecyclerViewAdapter;
-import com.test.android.myapplication.TableRowView;
+import com.test.android.myapplication.adapter.RecyclerViewAdapter;
+import com.test.android.myapplication.adapter.TableRowView;
 import com.test.android.myapplication.database.DBHelper;
 
 import java.util.ArrayList;
@@ -42,18 +40,19 @@ public class WalletViewModel extends AndroidViewModel {
             int spinnerIndex = cursor.getColumnIndex(DBHelper.DEAL_SPINNER);
             int dealIndex = cursor.getColumnIndex(DBHelper.NAME_DEAL);
             int valueIndex = cursor.getColumnIndex(DBHelper.DEAL_VALUE);
+            int timeIndex = cursor.getColumnIndex(DBHelper.DEAL_TIME);
             Log.i("qwer", cursor.getString(dealIndex));
             Log.i("qwer",cursor.getString(valueIndex));
             do {
                 switch (cursor.getString(spinnerIndex)){
                     case "0":
-                        tableRowView =  new TableRowView(cursor.getString(dealIndex), Color.rgb(0,225,0),"+" + cursor.getString(valueIndex) + getApplication().getResources().getString(R.string.currency),Calendar.getInstance().getTime().toString());
+                        tableRowView =  new TableRowView(cursor.getString(dealIndex), Color.rgb(0,225,0),"+" + cursor.getString(valueIndex) + getApplication().getResources().getString(R.string.currency),cursor.getString(timeIndex));
                         arrayList.add(tableRowView);
                         recyclerViewAdapter = new RecyclerViewAdapter(arrayList);
                         getRecyclerViewAdapter.setValue(recyclerViewAdapter);
                         break;
                     case "1":
-                         tableRowView = new TableRowView(cursor.getString(dealIndex), Color.rgb(255,0,0),"-" + cursor.getString(valueIndex) + getApplication().getResources().getString(R.string.currency),Calendar.getInstance().getTime().toString());
+                         tableRowView = new TableRowView(cursor.getString(dealIndex), Color.rgb(255,0,0),"-" + cursor.getString(valueIndex) + getApplication().getResources().getString(R.string.currency),cursor.getString(timeIndex));
                         arrayList.add(tableRowView);
                         recyclerViewAdapter = new RecyclerViewAdapter(arrayList);
                         getRecyclerViewAdapter.setValue(recyclerViewAdapter);

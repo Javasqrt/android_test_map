@@ -1,6 +1,6 @@
-package com.test.android.myapplication;
+package com.test.android.myapplication.adapter;
 
-import android.content.res.ColorStateList;
+
 
 public class TableRowView {
     String name_deal, sum_transaction, time;

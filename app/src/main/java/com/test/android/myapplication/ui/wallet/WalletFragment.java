@@ -1,8 +1,6 @@
 package com.test.android.myapplication.ui.wallet;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,13 +16,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.test.android.myapplication.R;
-import com.test.android.myapplication.RecyclerViewAdapter;
+import com.test.android.myapplication.adapter.RecyclerViewAdapter;
 import com.test.android.myapplication.WalletNewDeal;
-import com.test.android.myapplication.database.DBHelper;
 import com.test.android.myapplication.databinding.FragmentWalletBinding;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 
 public class WalletFragment extends Fragment{
 
@@ -60,16 +56,6 @@ public class WalletFragment extends Fragment{
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(view.getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
-
-
-       /* if(requireActivity().getIntent().getStringExtra("text_new_deal_string") != null &&
-        requireActivity().getIntent().getStringExtra("text_sum_transaction_string") != null){
-            recyclerViewCount++;
-            recyclerViewAdapter = new RecyclerViewAdapter(recyclerViewCount,requireActivity().getIntent().getStringExtra("text_new_deal_string"), requireActivity().getIntent().getStringExtra("text_sum_transaction_string"), Calendar.getInstance().getTime().toString(),R.color.red);
-
-
-        }
-        recyclerView.setAdapter(recyclerViewAdapter);*/
         new_deal_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,5 +80,8 @@ public class WalletFragment extends Fragment{
         binding = null;
     }
 
-
+    @Override
+    public boolean shouldShowRequestPermissionRationale(@NonNull String permission) {
+        return super.shouldShowRequestPermissionRationale(permission);
+    }
 }

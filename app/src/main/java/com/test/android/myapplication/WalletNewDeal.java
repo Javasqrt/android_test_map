@@ -5,11 +5,8 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.content.ContentValues;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.text.format.Time;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,15 +14,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
-import com.google.android.gms.common.internal.ResourceUtils;
+import com.test.android.myapplication.adapter.RecyclerViewAdapter;
 import com.test.android.myapplication.database.DBHelper;
-import com.test.android.myapplication.ui.wallet.WalletFragment;
 
-import java.io.Serializable;
 import java.util.Calendar;
-import java.util.Date;
 
 public class WalletNewDeal extends FragmentActivity {
 
@@ -89,6 +82,7 @@ public class WalletNewDeal extends FragmentActivity {
                         }
                         num ++;
                         contentValues.put(DBHelper.DEAL_SPINNER, String.valueOf(id));
+                        contentValues.put(DBHelper.DEAL_TIME, String.valueOf(Calendar.getInstance().getTime()));
                         sqLiteDatabase.insert(DBHelper.DATABASE_TABLE,null,contentValues);
                         dbHelper.close();
                         overridePendingTransition(0,0);

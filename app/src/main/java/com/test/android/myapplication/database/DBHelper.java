@@ -15,6 +15,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String NAME_DEAL = "name_deal";
     public static final String DEAL_SPINNER = "spinner_deal";
     public static final String DEAL_VALUE = "value_deal";
+    public static final String DEAL_TIME = "value_time";
     public DBHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -23,7 +24,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         db.execSQL("create table " + DATABASE_TABLE + "(" + KEY_ID + " integer primary key," + NAME_DEAL + " text," + DEAL_SPINNER + " text,"
-        + DEAL_VALUE + " text" + ")");
+        + DEAL_VALUE + " text," + DEAL_TIME + " text" + ")");
 
     }
 

@@ -1,22 +1,21 @@
-package com.test.android.myapplication;
+package com.test.android.myapplication.adapter;
 
-import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.test.android.myapplication.R;
 import com.test.android.myapplication.database.DBHelper;
 
 import java.util.ArrayList;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.RecyclerViewHolder>{
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.RecyclerViewHolder> implements AdapterView.OnItemClickListener {
     private  ArrayList<TableRowView> arrayList;
 
     private String new_deal;
@@ -53,6 +52,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public int getItemCount() {
         return arrayList.size();
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        parent.getAdapter().getItem(position);
+
     }
 
     class RecyclerViewHolder extends RecyclerView.ViewHolder{
