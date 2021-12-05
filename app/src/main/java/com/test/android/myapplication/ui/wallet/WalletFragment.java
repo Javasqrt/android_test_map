@@ -2,6 +2,8 @@ package com.test.android.myapplication.ui.wallet;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,22 +22,28 @@ import com.test.android.myapplication.RecyclerViewAdapter;
 import com.test.android.myapplication.WalletNewDeal;
 import com.test.android.myapplication.databinding.FragmentWalletBinding;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class WalletFragment extends Fragment {
+public class WalletFragment extends Fragment{
 
     private WalletViewModel walletViewModel;
     private FragmentWalletBinding binding;
     private ImageButton new_deal_btn;
     private ArrayList<String> arrayList;
     private RecyclerView recyclerView;
+    private WalletNewDeal walletNewDeal;
+    RecyclerViewAdapter recyclerViewAdapter = null;
     private static int recyclerViewCount;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        if(requireActivity().getIntent().getSerializableExtra("recyclerViewAdapter") != null){
+            recyclerViewAdapter = (RecyclerViewAdapter) requireActivity().getIntent().getSerializableExtra("recyclerViewAdapter");
+        }
         walletViewModel =
-                new ViewModelProvider(this).get(WalletViewModel.class);
+                new ViewModelProvider(this,new NewDealFactory(getActivity().getApplication(), recyclerViewAdapter)).get(WalletViewModel.class);
 
         binding = FragmentWalletBinding.inflate(inflater, container, false);
 
@@ -50,7 +58,7 @@ public class WalletFragment extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
 
-        RecyclerViewAdapter recyclerViewAdapter = null;
+
        /* if(requireActivity().getIntent().getStringExtra("text_new_deal_string") != null &&
         requireActivity().getIntent().getStringExtra("text_sum_transaction_string") != null){
             recyclerViewCount++;
@@ -79,4 +87,6 @@ public class WalletFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
+
 }

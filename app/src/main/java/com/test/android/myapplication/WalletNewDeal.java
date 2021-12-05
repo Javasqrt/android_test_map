@@ -13,15 +13,18 @@ import android.widget.EditText;
 
 import com.test.android.myapplication.ui.wallet.WalletFragment;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
 public class WalletNewDeal extends FragmentActivity {
 
-
+    public RecyclerViewAdapter recyclerViewAdapter = null;
     EditText text_new_deal;
     EditText text_sum_transaction;
    // EditText text_date;
+    private static int num;
+    String text_new_deal_string, text_sum_transaction_string;
     Button add;
 
     @Override
@@ -42,20 +45,23 @@ public class WalletNewDeal extends FragmentActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(WalletNewDeal.this, MainActivity.class);
                 if(checkEditText(text_new_deal)){
-                   intent.putExtra("text_new_deal_string",text_new_deal.getText().toString());
+                   //intent.putExtra("text_new_deal_string",text_new_deal.getText().toString());
+                    text_new_deal_string = text_new_deal.getText().toString();
                 }else {
                     text_new_deal.setError("Field is empty!");
                     return;
 
                 }
                 if(checkEditText(text_sum_transaction)){
-                    intent.putExtra("text_sum_transaction_string",text_sum_transaction.getText().toString());
+                   // intent.putExtra("text_sum_transaction_string",text_sum_transaction.getText().toString());
+                    text_sum_transaction_string = text_sum_transaction.getText().toString();
                 }else {
                     text_sum_transaction.setError("Field is empty!");
                     return;
 
                 }
-                startActivity(intent);
+                num ++;
+                recyclerViewAdapter = new RecyclerViewAdapter(num,text_new_deal_string,text_sum_transaction_string,Calendar.getInstance().getTime().toString(),R.color.green);
                 overridePendingTransition(0,0);
                 finish();
             }

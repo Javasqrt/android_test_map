@@ -17,10 +17,10 @@ public class WalletViewModel extends AndroidViewModel {
     Intent intent;
     RecyclerViewAdapter recyclerViewAdapter = null;
     private MutableLiveData<RecyclerViewAdapter> getRecyclerViewAdapter;
-    public WalletViewModel(Application application) {
+    public WalletViewModel(Application application,RecyclerViewAdapter recyclerViewAdapter) {
         super(application);
         getRecyclerViewAdapter = new MutableLiveData<>();
-        //this.recyclerViewAdapter = recyclerViewAdapter;
+        this.recyclerViewAdapter = recyclerViewAdapter;
         //recyclerViewAdapter = new RecyclerViewAdapter(1,"new Deal", "1000", Calendar.getInstance().getTime().toString(), R.color.red);
         getRecyclerViewAdapter.setValue(recyclerViewAdapter);
     }
