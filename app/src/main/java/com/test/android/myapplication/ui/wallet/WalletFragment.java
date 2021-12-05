@@ -1,9 +1,9 @@
 package com.test.android.myapplication.ui.wallet;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,9 +20,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.test.android.myapplication.R;
 import com.test.android.myapplication.RecyclerViewAdapter;
 import com.test.android.myapplication.WalletNewDeal;
+import com.test.android.myapplication.database.DBHelper;
 import com.test.android.myapplication.databinding.FragmentWalletBinding;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -37,13 +37,13 @@ public class WalletFragment extends Fragment{
     RecyclerViewAdapter recyclerViewAdapter = null;
     private static int recyclerViewCount;
 
+
+
+
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        if(requireActivity().getIntent().getSerializableExtra("recyclerViewAdapter") != null){
-            recyclerViewAdapter = (RecyclerViewAdapter) requireActivity().getIntent().getSerializableExtra("recyclerViewAdapter");
-        }
-        walletViewModel =
-                new ViewModelProvider(this,new NewDealFactory(getActivity().getApplication(), recyclerViewAdapter)).get(WalletViewModel.class);
+
 
         binding = FragmentWalletBinding.inflate(inflater, container, false);
 
@@ -52,6 +52,9 @@ public class WalletFragment extends Fragment{
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        walletViewModel =
+                new ViewModelProvider(this,new NewDealFactory(requireActivity().getApplication(), recyclerViewAdapter)).get(WalletViewModel.class);
+
         new_deal_btn = view.findViewById(R.id.new_deal);
         recyclerView = view.findViewById(R.id.list);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(view.getContext());
@@ -74,12 +77,15 @@ public class WalletFragment extends Fragment{
                 requireActivity().overridePendingTransition(0,0);
             }
         });
-        walletViewModel.getRecyclerViewAdapter().observe(getViewLifecycleOwner(), new Observer<RecyclerViewAdapter>() {
-            @Override
-            public void onChanged(@Nullable RecyclerViewAdapter sRecyclerViewAdapter) {
-                recyclerView.setAdapter(sRecyclerViewAdapter);
-            }
-        });
+
+            walletViewModel.getRecyclerView().observe(getViewLifecycleOwner(), new Observer<RecyclerViewAdapter>() {
+                @Override
+                public void onChanged(@Nullable RecyclerViewAdapter sRecyclerViewAdapter) {
+
+                    recyclerView.setAdapter(sRecyclerViewAdapter);
+                }
+            });
+
     }
 
     @Override

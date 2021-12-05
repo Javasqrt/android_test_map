@@ -1,20 +1,27 @@
 package com.test.android.myapplication.ui.wallet;
 
 import android.app.Application;
+import android.content.ContentValues;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.test.android.myapplication.RecyclerViewAdapter;
+import com.test.android.myapplication.database.DBHelper;
 
 public class NewDealFactory extends ViewModelProvider.AndroidViewModelFactory {
     Application application;
     RecyclerViewAdapter recyclerViewAdapter;
-    public NewDealFactory(Application application, RecyclerViewAdapter recyclerViewAdapter){
+
+
+    public NewDealFactory(Application application, RecyclerViewAdapter recyclerViewAdapter ){
         super(application);
         this.application = application;
         this.recyclerViewAdapter = recyclerViewAdapter;
+
+
+
     }
     @NonNull
     @Override

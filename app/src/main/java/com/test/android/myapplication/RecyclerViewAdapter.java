@@ -1,6 +1,7 @@
 package com.test.android.myapplication;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,18 +11,22 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.test.android.myapplication.database.DBHelper;
+
 import java.util.ArrayList;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.RecyclerViewHolder>{
 
-    private ArrayList<Integer> integerArrayList = new ArrayList<>();
+    private static int num;
     private String new_deal;
     private String sum_transaction;
     private String text_time;
+    SQLiteDatabase sqLiteDatabase;
+    DBHelper dbHelper;
     int color;
     public RecyclerViewAdapter(int numItems, String new_deal, String sum_transaction, String text_time,int color){
 
-        integerArrayList.add(numItems);
+        num = numItems;
         this.new_deal = new_deal;
         this.sum_transaction = sum_transaction;
         this.text_time = text_time;
@@ -32,6 +37,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public RecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
+        dbHelper = new DBHelper(context);
         int list_item_new_deal = R.layout.list_item_fragment_new_deal;
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(list_item_new_deal,parent, false);
@@ -45,12 +51,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
-
+            sqLiteDatabase = dbHelper.getWritableDatabase();
+            sqLiteDatabase.delete(DBHelper.DATABASE_TABLE,String.valueOf(position),null);
     }
 
     @Override
     public int getItemCount() {
-        return integerArrayList.size();
+        return num;
     }
 
     class RecyclerViewHolder extends RecyclerView.ViewHolder{
