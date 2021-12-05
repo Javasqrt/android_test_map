@@ -33,6 +33,7 @@
                 android:textStyle="bold" />
 
             <EditText
+                android:id="@+id/text_new_deal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
@@ -74,6 +75,7 @@
                     tools:ignore="SpeakableTextPresentCheck" />
 
                 <EditText
+                    android:id="@+id/text_sum_transaction"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="3dp"
@@ -87,7 +89,7 @@
 
         </LinearLayout>
 
-        <LinearLayout
+      <!--  <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
@@ -109,6 +111,7 @@
                 android:orientation="horizontal">
 
                 <EditText
+                    android:id="@+id/text_date"
                     android:layout_width="163dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="3dp"
@@ -126,10 +129,11 @@
                     android:src="@drawable/ic_baseline_calendar_today_24" />
             </LinearLayout>
 
-        </LinearLayout>
+        </LinearLayout>-->
     </LinearLayout>
 
     <Button
+        android:id="@+id/add"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

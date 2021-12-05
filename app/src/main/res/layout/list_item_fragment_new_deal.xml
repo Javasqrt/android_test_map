@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:textSize="25dp"
+        android:textSize="10dp"
         android:text="@string/date"
         app:layout_constraintStart_toEndOf="@+id/image_transaction"
         app:layout_constraintTop_toBottomOf="@+id/name_deal" />
@@ -42,26 +42,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/text_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:layout_marginEnd="8dp"
-        android:textSize="25dp"
-        android:textStyle="normal"
-        app:layout_constraintEnd_toStartOf="@+id/text_time"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <TextView
         android:id="@+id/text_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:textSize="25dp"
+        android:textSize="10dp"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/sum_transaction" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

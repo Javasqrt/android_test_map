@@ -39,7 +39,7 @@
             android:background="@drawable/ic_baseline_add_box_24" />
     </LinearLayout>
 
-    <ListView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
