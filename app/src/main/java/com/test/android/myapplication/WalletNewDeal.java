@@ -36,7 +36,6 @@ public class WalletNewDeal extends FragmentActivity {
         setContentView(R.layout.fragment_new_deal);
         text_new_deal = findViewById(R.id.text_new_deal);
         text_sum_transaction = findViewById(R.id.text_sum_transaction);
-        //text_date = findViewById(R.id.text_date);
         add = findViewById(R.id.add);
         spinner = findViewById(R.id.spinner);
         dealChoose = new String[]{getResources().getString(R.string.income),getResources().getString(R.string.consumption)};
