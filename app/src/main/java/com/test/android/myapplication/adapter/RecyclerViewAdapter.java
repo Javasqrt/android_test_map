@@ -50,12 +50,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     public void deleteElements(int position){
-
-
-        sqLiteDatabase = dbHelper.getWritableDatabase();
-        arrayList.remove(position);
-        sqLiteDatabase.delete(DBHelper.DATABASE_TABLE, null,null);
-        sqLiteDatabase.close();
+        // TODO: delete arraylist element from position and from database
     }
     @Override
     public int getItemCount() {
