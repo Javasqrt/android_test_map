@@ -67,7 +67,9 @@ public class WalletViewModel extends AndroidViewModel {
             Log.i("qwer","null");
         }
 
+
     }
+
 
     public LiveData<RecyclerViewAdapter> getRecyclerView() {
         return getRecyclerViewAdapter;

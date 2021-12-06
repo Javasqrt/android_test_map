@@ -2,6 +2,7 @@ package com.test.android.myapplication.ui.map;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -26,18 +27,28 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.test.android.myapplication.R;
+import com.test.android.myapplication.databinding.FragmentMapBinding;
+import com.test.android.myapplication.databinding.FragmentWalletBinding;
 
 public class MapFragment extends Fragment {
     GoogleMap map;
     FusedLocationProviderClient providerClient;
     SupportMapFragment mapFragment;
+    FragmentMapBinding binding;
+
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_map, container, false);
+        //eturn inflater.inflate(R.layout.fragment_map, container, false);
+        binding = FragmentMapBinding.inflate(inflater, container, false);
+
+        return binding.getRoot();
     }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -78,4 +89,21 @@ public class MapFragment extends Fragment {
 
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 44) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                getCurrentLocation();
+            }
+        }
+    }
+
+
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
 }

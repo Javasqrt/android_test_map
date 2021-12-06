@@ -3,6 +3,7 @@ package com.test.android.myapplication.ui.wallet;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -56,6 +57,7 @@ public class WalletFragment extends Fragment{
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(view.getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
+
         new_deal_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,6 +71,7 @@ public class WalletFragment extends Fragment{
                 public void onChanged(@Nullable RecyclerViewAdapter sRecyclerViewAdapter) {
 
                     recyclerView.setAdapter(sRecyclerViewAdapter);
+
                 }
             });
 
@@ -80,8 +83,5 @@ public class WalletFragment extends Fragment{
         binding = null;
     }
 
-    @Override
-    public boolean shouldShowRequestPermissionRationale(@NonNull String permission) {
-        return super.shouldShowRequestPermissionRationale(permission);
-    }
+
 }

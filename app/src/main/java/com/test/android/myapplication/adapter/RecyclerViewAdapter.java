@@ -1,6 +1,8 @@
 package com.test.android.myapplication.adapter;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,15 +19,12 @@ import java.util.ArrayList;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.RecyclerViewHolder> implements AdapterView.OnItemClickListener {
     private  ArrayList<TableRowView> arrayList;
-
-    private String new_deal;
-    private String sum_transaction;
-    private String text_time;
     SQLiteDatabase sqLiteDatabase;
     DBHelper dbHelper;
     int color;
     public RecyclerViewAdapter( ArrayList<TableRowView> arrayList){
         this.arrayList = arrayList;
+
 
     }
     @NonNull
@@ -47,18 +46,28 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.sum_transaction.setText(tableRowView.getSum_transaction());
         holder.sum_transaction.setTextColor(tableRowView.getColor());
         holder.text_time.setText(tableRowView.getTime());
+
     }
 
+    public void deleteElements(int position){
+
+
+        sqLiteDatabase = dbHelper.getWritableDatabase();
+        arrayList.remove(position);
+        sqLiteDatabase.delete(DBHelper.DATABASE_TABLE, null,null);
+        sqLiteDatabase.close();
+    }
     @Override
     public int getItemCount() {
         return arrayList.size();
     }
 
+
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        parent.getAdapter().getItem(position);
-
+        deleteElements(position);
     }
+
 
     class RecyclerViewHolder extends RecyclerView.ViewHolder{
             TextView name_deal;
@@ -70,7 +79,21 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             sum_transaction = itemView.findViewById(R.id.sum_transaction);
             text_time = itemView.findViewById(R.id.text_time);
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if(position != RecyclerView.NO_POSITION){
+                        deleteElements(position);
+                    }
+                }
+            });
+
+
+
         }
+
+
 
     }
 }
