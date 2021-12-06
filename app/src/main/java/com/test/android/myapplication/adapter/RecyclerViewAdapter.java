@@ -1,8 +1,5 @@
 package com.test.android.myapplication.adapter;
 
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,9 +16,7 @@ import java.util.ArrayList;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.RecyclerViewHolder> implements AdapterView.OnItemClickListener {
     private  ArrayList<TableRowView> arrayList;
-    SQLiteDatabase sqLiteDatabase;
     DBHelper dbHelper;
-    int color;
     public RecyclerViewAdapter( ArrayList<TableRowView> arrayList){
         this.arrayList = arrayList;
 

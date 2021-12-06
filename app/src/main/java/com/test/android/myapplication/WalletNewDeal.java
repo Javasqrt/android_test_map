@@ -1,8 +1,6 @@
 package com.test.android.myapplication;
 
 
-import androidx.fragment.app.FragmentActivity;
-
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -15,6 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import androidx.fragment.app.FragmentActivity;
+
 import com.test.android.myapplication.adapter.RecyclerViewAdapter;
 import com.test.android.myapplication.database.DBHelper;
 
@@ -22,13 +22,10 @@ import java.util.Calendar;
 
 public class WalletNewDeal extends FragmentActivity {
 
-    public RecyclerViewAdapter recyclerViewAdapter = null;
     EditText text_new_deal;
     EditText text_sum_transaction;
     Spinner spinner;
     String[] dealChoose;
-   // EditText text_date;
-    private static int num;
     String text_new_deal_string, text_sum_transaction_string;
     Button add;
     DBHelper dbHelper;
@@ -63,7 +60,7 @@ public class WalletNewDeal extends FragmentActivity {
                     public void onClick(View v) {
                         Intent intent = new Intent(WalletNewDeal.this, MainActivity.class);
                         if(checkEditText(text_new_deal)){
-                            //intent.putExtra("text_new_deal_string",text_new_deal.getText().toString());
+
                             text_new_deal_string = text_new_deal.getText().toString();
                             contentValues.put(DBHelper.NAME_DEAL, text_new_deal_string);
                         }else {
@@ -72,7 +69,7 @@ public class WalletNewDeal extends FragmentActivity {
 
                         }
                         if(checkEditText(text_sum_transaction)){
-                            // intent.putExtra("text_sum_transaction_string",text_sum_transaction.getText().toString());
+
                             text_sum_transaction_string = text_sum_transaction.getText().toString();
                             contentValues.put(DBHelper.DEAL_VALUE, text_sum_transaction_string);
                         }else {
@@ -80,7 +77,6 @@ public class WalletNewDeal extends FragmentActivity {
                             return;
 
                         }
-                        num ++;
                         contentValues.put(DBHelper.DEAL_SPINNER, String.valueOf(id));
                         contentValues.put(DBHelper.DEAL_TIME, String.valueOf(Calendar.getInstance().getTime()));
                         sqLiteDatabase.insert(DBHelper.DATABASE_TABLE,null,contentValues);

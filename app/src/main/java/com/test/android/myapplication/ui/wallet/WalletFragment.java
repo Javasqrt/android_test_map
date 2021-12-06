@@ -3,7 +3,6 @@ package com.test.android.myapplication.ui.wallet;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -17,8 +16,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.test.android.myapplication.R;
-import com.test.android.myapplication.adapter.RecyclerViewAdapter;
 import com.test.android.myapplication.WalletNewDeal;
+import com.test.android.myapplication.adapter.RecyclerViewAdapter;
 import com.test.android.myapplication.databinding.FragmentWalletBinding;
 
 import java.util.ArrayList;
@@ -28,11 +27,8 @@ public class WalletFragment extends Fragment{
     private WalletViewModel walletViewModel;
     private FragmentWalletBinding binding;
     private ImageButton new_deal_btn;
-    private ArrayList<String> arrayList;
     private RecyclerView recyclerView;
-    private WalletNewDeal walletNewDeal;
     RecyclerViewAdapter recyclerViewAdapter = null;
-    private static int recyclerViewCount;
 
 
 

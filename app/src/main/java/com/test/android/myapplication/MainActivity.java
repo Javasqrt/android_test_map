@@ -1,27 +1,18 @@
 package com.test.android.myapplication;
 
 
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.view.View;
 import android.view.Menu;
 
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.navigation.NavigationView;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.navigation.NavigationView;
 import com.test.android.myapplication.databinding.ActivityMainBinding;
-import com.test.android.myapplication.ui.map.MapFragment;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 

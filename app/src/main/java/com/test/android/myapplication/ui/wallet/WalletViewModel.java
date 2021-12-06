@@ -17,12 +17,9 @@ import com.test.android.myapplication.adapter.TableRowView;
 import com.test.android.myapplication.database.DBHelper;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 
 public class WalletViewModel extends AndroidViewModel {
-    static int num = 1;
     DBHelper dbHelper;
-    Intent intent;
     TableRowView tableRowView;
     RecyclerViewAdapter recyclerViewAdapter = null;
     ArrayList<TableRowView> arrayList;
